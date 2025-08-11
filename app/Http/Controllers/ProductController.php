@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
+use Devrabiul\ToastMagic\Facades\ToastMagic;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class ProductController extends Controller
 {
@@ -36,7 +38,28 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $validated_data = $request->validate([
+            'name' => 'required|string|max:30',
+            'category_id' => 'required',
+            'description' => 'required|string|max:100',
+            'qrcode' => 'required|string',
+            'price' => 'required|integer'
+        ]);
+
+        try {
+    
+            Product::create($validated_data);
+            ToastMagic::success('Product registered');
+    
+            return back();
+        } catch (\Throwable $th) {
+            Log::error($th->getMessage(), [
+                'code' => $th->getCode()
+            ]);
+
+            ToastMagic::error('An error occurred. Contact your IT Admin');
+        }
     }
 
     /**

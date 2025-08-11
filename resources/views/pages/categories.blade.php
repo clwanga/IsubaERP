@@ -91,6 +91,9 @@
                     <tr>
 
                         <th scope="col" class="px-6 py-3">
+                            Category ID
+                        </th>
+                        <th scope="col" class="px-6 py-3">
                             Name
                         </th>
                         <th scope="col" class="px-6 py-3">
@@ -106,23 +109,15 @@
                         <tr
                             class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <td class="px-6 py-4">
+                                {{ $category->id }}
+                            </td>
+                            <td class="px-6 py-4">
                                 {{ $category->name }}
                             </td>
                             <td class="px-6 py-4">
                                 {{ $category->description }}
                             </td>
                             <td class="px-6 py-4">
-                                {{-- <div class="mb-1">
-
-                                    <a href="#"
-                                        class="font-medium text-grey-600 dark:text-grey-500 hover:text-grey-800 transition duration-75">
-                                        <span
-                                            class="bg-blue-100 border border-blue-800 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-blue-900 dark:text-blue-300">Edit</span>
-
-                                    </a>
-
-                                </div>
-                   --}}
                                 <div class="grid grid-cols-2 gap-2">
                                     <div>
                                         <a href=""

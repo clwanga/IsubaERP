@@ -21,7 +21,7 @@
                                 <!-- Modal header -->
                                 <div
                                     class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
-                                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white uppercase">
                                         Register New Product
                                     </h3>
                                     <button type="button"
@@ -46,7 +46,8 @@
                                             <div class="mb-5">
                                                 <label for="name"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
-                                                <input type="text" id="name" name="name"
+                                                <input value="{{ old('name') }}" type="text" id="name"
+                                                    name="name"
                                                     class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light"
                                                     placeholder="" />
                                                 @error('name')
@@ -57,7 +58,8 @@
                                             <div class="mb-5">
                                                 <label for="category_id"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
-                                                <select id="category_id" name="role_id"
+                                                <select value="{{ old('category_id') }}" id="category_id"
+                                                    name="category_id"
                                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                                     <option value="">-- select category --</option>
                                                     @foreach ($categories as $category)
@@ -73,7 +75,7 @@
                                             <div class="mb-5">
                                                 <label for="description"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-                                                <textarea id="description" name="description"
+                                                <textarea value="{{ old('description') }}" id="description" name="description"
                                                     class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light"></textarea>
                                                 @error('description')
                                                     <p class="mt-2 text-sm text-red-600 dark:text-red-500">
@@ -84,7 +86,8 @@
                                                 <label for="qrcode"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">QR
                                                     Code</label>
-                                                <input type="text" id="qrcode" name="qrcode"
+                                                <input value="{{ old('qrcode') }}" type="text" id="qrcode"
+                                                    name="qrcode"
                                                     class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light" />
                                                 @error('qrcode')
                                                     <p class="mt-2 text-sm text-red-600 dark:text-red-500">
@@ -94,7 +97,8 @@
                                             <div class="mb-5">
                                                 <label for="price"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
-                                                <input type="number" id="price" name="price"
+                                                <input value="{{ old('price') }}" type="number" id="price"
+                                                    name="price"
                                                     class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light"
                                                     required />
                                                 @error('price')
@@ -133,6 +137,10 @@
                     <tr>
 
                         <th scope="col" class="px-6 py-3">
+                            Product ID
+                        </th>
+
+                        <th scope="col" class="px-6 py-3">
                             Name
                         </th>
                         <th scope="col" class="px-6 py-3">
@@ -153,13 +161,12 @@
                     @forelse ($products as $product)
                         <tr
                             class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-
-                            <th scope="row"
-                                class="flex items-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                <div class="ps-3">
-                                    <div class="text-base font-semibold">{{ $product->name }}</div>
-                                </div>
-                            </th>
+                            <td class="px-6 py-4">
+                                {{ $product->id }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $product->name }}
+                            </td>
                             <td class="px-6 py-4">
                                 {{ $product->category_id }}
                             </td>
@@ -170,23 +177,35 @@
                                 {{ $product->price }}
                             </td>
                             <td class="px-6 py">
-                                <div class="mb-1">
+                                <div class="grid grid-cols-2 gap-1">
 
-                                    <a href="#"
-                                        class="font-medium text-grey-600 dark:text-grey-500 hover:text-grey-800 transition duration-75">
-                                        <span
-                                            class="bg-blue-100 border border-blue-800 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-blue-900 dark:text-blue-300">Edit</span>
+                                    <div>
+                                        <a href=""
+                                            class="font-medium text-grey-600 dark:text-grey-500 hover:text-grey-800">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                                class="size-4">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+                                            </svg>
+                                        </a>
 
-                                    </a>
+                                    </div>
+                                    <div>
+                                        <form action="{{ route('product.destroy', $product) }}" method="post">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" class=" text-red-800 hover:cursor-pointer">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                    class="size-4">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                                                </svg>
 
-                                </div>
-                                <div>
-                                    <form action="{{ route('product.destroy', $product) }}" method="post">
-                                        @csrf
-                                        @method('delete')
-                                        <button type="submit"
-                                            class="bg-red-100 border border-red-800 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-red-900 dark:text-red-300 hover:cursor-pointer">Delete</button>
-                                    </form>
+                                            </button>
+                                        </form>
+                                    </div>
                                 </div>
                             </td>
                         </tr>
