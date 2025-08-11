@@ -177,38 +177,61 @@
                                 </div>
                             </td>
                             <td class="px-6 py">
-                                <div class="mb-1">
-                                    <form action="{{ route('register.status_update', $user) }}" method="post">
-                                        @csrf
-                                        @method('put')
-                                        @if ($user->is_active)
-                                            <button type="submit"
-                                                class="bg-gray-100 border border-gray-800 text-gray-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-gray-700 dark:text-gray-300 hover:cursor-pointer">Deactivate
-                                                User</button>
-                                        @else
-                                            <button type="submit"
-                                                class="bg-yellow-100 border border-yellow-800 text-yellow-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-yellow-900 dark:text-yellow-300 hover:cursor-pointer">Activate
-                                                User</button>
-                                        @endif
+                                <div class="grid grid-cols-3 gap-1">
+                                    <div>
+                                        <form action="{{ route('register.status_update', $user) }}" method="post">
+                                            @csrf
+                                            @method('put')
+                                            @if ($user->is_active)
+                                                <button type="submit"
+                                                    class="  text-green-800 text-xs  dark:bg-green-700 dark:text-green-300 hover:cursor-pointer"><svg
+                                                        xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                        class="size-4">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
+                                                    </svg>
+                                                </button>
+                                            @else
+                                                <button type="submit"
+                                                    class=" text-yellow-800 text-xs  hover:cursor-pointer">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                        class="size-4">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
+                                                    </svg>
+                                                </button>
+                                            @endif
 
-                                    </form>
-                                </div>
-                                <div class="mb-1">
+                                        </form>
+                                    </div>
+                                    <div>
+                                        <a href=""
+                                            class="font-medium text-grey-600 dark:text-grey-500 hover:text-grey-800">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                                class="size-4">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <form action="{{ route('register.delete', $user) }}" method="post">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" class=" text-red-800 hover:cursor-pointer">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                    class="size-4">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                                                </svg>
 
-                                    <a href="#"
-                                        class="font-medium text-grey-600 dark:text-grey-500 hover:text-grey-800 transition duration-75">
-                                        <span
-                                            class="bg-blue-100 border border-blue-800 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-blue-900 dark:text-blue-300">Edit</span>
-
-                                    </a>
-                                </div>
-                                <div>
-                                    <form action="{{ route('register.delete', $user) }}" method="post">
-                                        @csrf
-                                        @method('delete')
-                                        <button type="submit"
-                                            class="bg-red-100 border border-red-800 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-red-900 dark:text-red-300 hover:cursor-pointer">Delete</button>
-                                    </form>
+                                            </button>
+                                        </form>
+                                    </div>
                                 </div>
                             </td>
                         </tr>

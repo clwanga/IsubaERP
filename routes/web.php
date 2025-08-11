@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RolesController;
 use Illuminate\Support\Facades\Route;
@@ -27,4 +29,7 @@ Route::middleware('auth')->group(function(){
     Route::get('/', [HomeController::class, 'index'])->name('dashboard');
 
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+
+    Route::resource('product', ProductController::class);
+    Route::resource('category', CategoryController::class);
 });

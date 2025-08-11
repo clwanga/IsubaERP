@@ -30,36 +30,50 @@ class RegisterController extends Controller
             'password' => 'required|confirmed'
         ]);
 
-        $validated_data['password'] = Hash::make($request->input('password'));
+        try {
+            $validated_data['password'] = Hash::make($request->input('password'));
+    
+            User::create($validated_data);
+            ToastMagic::success('user created successfully');
+    
+            return back();
+        } catch (\Throwable $th) {
+            ToastMagic::error($th->getMessage());
+        }
 
-        User::create($validated_data);
-        ToastMagic::success('user created successfully');
-
-        return back();
 
     }
 
     public function updateStatus(User $user){
-        // get the current value
-        $result = 0;
+        try {
+            // get the current value
+            $result = 0;
 
-        $user->is_active == 0 ? $result = 1: $result = 0;
-        
-        //update the negation of the value
-        $user->update([
-            'is_active' => $result
-        ]);
+            $user->is_active == 0 ? $result = 1: $result = 0;
+            
+            //update the negation of the value
+            $user->update([
+                'is_active' => $result
+            ]);
 
-        ToastMagic::success('Operation successful');
+            ToastMagic::success('Operation successful');
 
-        return back();
+            return back();
+        } catch (\Throwable $th) {
+             ToastMagic::error($th->getMessage());
+        }
+
     }
 
     public function deleteUser(User $user){
-        $user->delete();
+        try {
+            $user->delete();
 
-        ToastMagic::success('user deleted successfully');
+            ToastMagic::success('user deleted successfully');
+            return back();
 
-        return back();
+        } catch (\Throwable $th) {
+            ToastMagic::error($th->getMessage());
+        }
     }
 }
