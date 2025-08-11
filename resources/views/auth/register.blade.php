@@ -21,9 +21,9 @@
                                 <!-- Modal header -->
                                 <div
                                     class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
-                                    {{-- <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white uppercase">
                                         Register New user
-                                    </h3> --}}
+                                    </h3>
                                     <button type="button"
                                         class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
                                         data-modal-hide="default-modal">
@@ -92,10 +92,10 @@
                                         </div>
                                         <div class="mb-5">
                                             <label for="role_id"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select
-                                                Role</label>
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Role</label>
                                             <select id="role_id" name="role_id"
                                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                <option value="">-- select role --</option>
                                                 @foreach ($roles as $role)
                                                     <option value="{{ $role->id }}">{{ $role->role }}
                                                     </option>

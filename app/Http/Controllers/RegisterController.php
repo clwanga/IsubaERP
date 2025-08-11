@@ -8,6 +8,7 @@ use App\Models\User;
 use Devrabiul\ToastMagic\Facades\ToastMagic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 class RegisterController extends Controller
 {
@@ -38,7 +39,11 @@ class RegisterController extends Controller
     
             return back();
         } catch (\Throwable $th) {
-            ToastMagic::error($th->getMessage());
+            Log::error($th->getMessage(), [
+                'code' => $th->getCode()
+            ]);
+
+            ToastMagic::error('An error occurred. Contact your IT Admin');
         }
 
 
@@ -60,7 +65,11 @@ class RegisterController extends Controller
 
             return back();
         } catch (\Throwable $th) {
-             ToastMagic::error($th->getMessage());
+            Log::error($th->getMessage(), [
+                'code' => $th->getCode()
+            ]);
+
+            ToastMagic::error('An error occurred. Contact your IT Admin');
         }
 
     }
@@ -73,7 +82,11 @@ class RegisterController extends Controller
             return back();
 
         } catch (\Throwable $th) {
-            ToastMagic::error($th->getMessage());
+            Log::error($th->getMessage(), [
+                'code' => $th->getCode()
+            ]);
+
+            ToastMagic::error('An error occurred. Contact your IT Admin');
         }
     }
 }

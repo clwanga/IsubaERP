@@ -13,11 +13,11 @@
 
 <body class="min-h-screen w-full @if (request()->is('/')) bg-slate-100 @endif">
     @if (request()->is('loginpage'))
-        <main class="container mx-auto p-4">
+        <main class="container mx-auto p-4 bg-slate-100 h-full">
             {{ $slot }}
         </main>
     @else
-        <main class="container mx-auto p-4">
+        <main class="container mx-auto p-4 bg-slate-100 h-full">
 
 
             <button data-drawer-target="sidebar-multi-level-sidebar" data-drawer-toggle="sidebar-multi-level-sidebar"
@@ -35,7 +35,7 @@
             <aside id="sidebar-multi-level-sidebar"
                 class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
                 aria-label="Sidebar">
-                <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+                <div class="h-full px-3 py-4 overflow-y-auto bg-gray-300 dark:bg-gray-800">
                     <a href="https://flowbite.com/" class="flex items-center ps-2.5 mb-5">
                         <img src="https://flowbite.com/docs/images/logo.svg" class="h-6 me-3 sm:h-7"
                             alt="Flowbite Logo" />

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Devrabiul\ToastMagic\Facades\ToastMagic;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class CategoryController extends Controller
 {
@@ -39,14 +40,17 @@ class CategoryController extends Controller
             'description' => 'required|string|max:100'
         ]);
 
-        try {
-            
+        try {      
             Category::create($validated);
             ToastMagic::success('Category added successfully');
 
             return back();
         } catch (\Throwable $th) {
-            ToastMagic::error($th->getMessage());
+            Log::error($th->getMessage(), [
+                'code' => $th->getCode()
+            ]);
+
+            ToastMagic::error('An error occurred. Contact your IT Admin');
         }
 
     }
@@ -86,7 +90,11 @@ class CategoryController extends Controller
 
             return back();
         } catch (\Throwable $th) {
-            ToastMagic::error($th->getMessage());
+            Log::error($th->getMessage(), [
+                'code' => $th->getCode()
+            ]);
+
+            ToastMagic::error('An error occurred. Contact your IT Admin');
         }
     }
 }
