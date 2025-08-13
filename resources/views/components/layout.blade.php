@@ -85,7 +85,7 @@
                                 </li>
                                 <li>
                                     <a href="{{ route('register') }}"
-                                        class="flex items-center w-full p-2 text-whte transition duration-75 rounded-lg pl-11 group hover:bg-sky-900 hover:text-white dark:text-white dark:hover:bg-gray-700 text-sm">Registration</a>
+                                        class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-sky-900 hover:text-white dark:text-white dark:hover:bg-gray-700 text-sm">Registration</a>
                                 </li>
                                 <li>
                                     <a href="#"
@@ -170,7 +170,11 @@
             <div class="sm:ml-64">
                 <div>
                     <x-header></x-header>
-                    {{ $slot }}
+                    <div class="p-2">
+
+                        {{ $slot }}
+                        @stack('scripts')
+                    </div>
                     {{-- <x-footer></x-footer> --}}
                 </div>
             </div>
@@ -180,7 +184,7 @@
     @endif
 
     //got to put this offline
-    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+    @vite(['resources/js/flowbite.js'])
     {!! ToastMagic::scripts() !!}
 </body>
 

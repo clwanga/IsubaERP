@@ -1,17 +1,11 @@
 <x-layout>
     <div>
-
-
+        <x-subheader title="product management" btnText="new product" modal="products"
+            svg_d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"></x-subheader>
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
             <div
                 class="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white dark:bg-gray-900">
                 <div>
-
-                    <button data-modal-target="products" data-modal-toggle="products"
-                        class="block text-white bg-sky-500 hover:bg-sky-900 cursor-pointer focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-lg text-sm m-2 px-5 py-2.5 text-center dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-800"
-                        type="button">
-                        Add New Product
-                    </button>
                     <!-- Main modal -->
                     <div id="products" tabindex="-1" aria-hidden="true"
                         class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -21,7 +15,7 @@
                                 <!-- Modal header -->
                                 <div
                                     class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
-                                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white uppercase">
+                                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white uppercase">
                                         Register New Product
                                     </h3>
                                     <button type="button"
@@ -39,7 +33,7 @@
                                 <div class="p-4 md:p-5 space-y-4">
 
 
-                                    <form class="max-w-sm mx-4" method="post" action="{{ route('product.store') }}">
+                                    <form class="mx-4" method="post" action="{{ route('product.store') }}">
                                         @csrf
                                         <div class="grid grid-cols-2 gap-3 mb-2">
 
@@ -120,7 +114,7 @@
                     </div>
                 </div>
                 <label for="table-search" class="sr-only">Search</label>
-                <div class="relative">
+                <div class="relative m-1">
                     <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
                         <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
@@ -138,7 +132,7 @@
                     <tr>
 
                         <th scope="col" class="px-6 py-3">
-                            Product ID
+                            ID
                         </th>
 
                         <th scope="col" class="px-6 py-3">
@@ -162,22 +156,22 @@
                     @forelse ($products as $product)
                         <tr
                             class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-                            <td class="px-6 py-4">
+                            <td class="px-5 py-3">
                                 {{ $product->id }}
                             </td>
-                            <td class="px-6 py-4">
+                            <td class="px-5 py-3">
                                 {{ $product->name }}
                             </td>
-                            <td class="px-6 py-4">
+                            <td class="px-5 py-3">
                                 {{ $product->category->name }}
                             </td>
-                            <td class="px-6 py-4">
+                            <td class="px-5 py-3">
                                 {{ $product->description }}
                             </td>
-                            <td class="px-6 py-4">
+                            <td class="px-5 py-3">
                                 {{ $product->price }}
                             </td>
-                            <td class="px-6 py">
+                            <td class="px-5 py-3">
                                 <div class="grid grid-cols-2 gap-1">
 
                                     <div>

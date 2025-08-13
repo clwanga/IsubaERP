@@ -1,17 +1,12 @@
 <x-layout>
+
+    <x-subheader modal="default-modal" title="user registration" btnText="new user"
+        svg_d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z"></x-subheader>
     <div>
-
-
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
             <div
                 class="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white dark:bg-gray-900">
                 <div>
-
-                    <button data-modal-target="default-modal" data-modal-toggle="default-modal"
-                        class="block text-white bg-sky-500 hover:bg-sky-900 cursor-pointer focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-lg text-sm m-2 px-5 py-2.5 text-center dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-800"
-                        type="button">
-                        Add New User
-                    </button>
                     <!-- Main modal -->
                     <div id="default-modal" tabindex="-1" aria-hidden="true"
                         class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -39,9 +34,9 @@
                                 <div class="p-4 md:p-5 space-y-4">
 
 
-                                    <form class="max-w-sm mx-4" method="post" action="{{ route('register.store') }}">
+                                    <form class="mx-4" method="post" action="{{ route('register.store') }}">
                                         @csrf
-                                        <div class="grid grid-cols-2 gap-3 mb-2">
+                                        <div class="grid grid-cols-2 gap-2 mb-2">
 
                                             <div class="mb-5">
                                                 <label for="name"
@@ -117,7 +112,7 @@
                     </div>
                 </div>
                 <label for="table-search" class="sr-only">Search</label>
-                <div class="relative">
+                <div class="relative m-1">
                     <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
                         <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
@@ -155,7 +150,7 @@
                     @forelse ($users as $user)
                         <tr
                             class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-                            <td class="px-6 py-4">
+                            <td class="px-5 py-3">
                                 {{ $user->id }}
                             </td>
                             <th scope="row"
@@ -166,10 +161,10 @@
                                     <div class="font-normal text-gray-500">{{ $user->email }}</div>
                                 </div>
                             </th>
-                            <td class="px-6 py-4">
-                                {{ $user->role->role }}
+                            <td class="px-5 py-3">
+                                {{ $user->role_id }}
                             </td>
-                            <td class="px-6 py-4">
+                            <td class="px-5 py-3">
                                 <div class="flex items-center">
                                     @if ($user->is_active)
                                         <span
@@ -181,7 +176,7 @@
                                     @endif
                                 </div>
                             </td>
-                            <td class="px-6 py">
+                            <td class="px-5 py-3">
                                 <div class="grid grid-cols-3 gap-1">
                                     <div>
                                         <form action="{{ route('register.status_update', $user) }}" method="post">

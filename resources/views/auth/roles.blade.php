@@ -1,12 +1,7 @@
 <x-layout>
-
+    <x-subheader modal="roles" title="roles management" btnText="new role"
+        svg_d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"></x-subheader>
     <div class="m-2">
-
-        <button data-modal-target="roles" data-modal-toggle="roles"
-            class="block text-white bg-sky-500 hover:bg-sky-900 cursor-pointer focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-lg text-sm m-2 px-5 py-2.5 text-center dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-800"
-            type="button">
-            Add New Role
-        </button>
         <!-- Main modal -->
         <div id="roles" tabindex="-1" aria-hidden="true"
             class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -34,7 +29,7 @@
                     <div class="p-4 md:p-5 space-y-4">
 
 
-                        <form class="max-w-sm mx-4" method="post" action="{{ route('roles.store') }}">
+                        <form class=" mx-4" method="post" action="{{ route('roles.store') }}">
                             @csrf
                             <div class="mb-5">
                                 <label for="name"

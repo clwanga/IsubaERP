@@ -1,17 +1,12 @@
 <x-layout>
     <div>
-
+        <x-subheader title="category management" btnText="new category" modal="categories"
+            svg_d="M9.568 3H5.25A2.25 2.25 0 0 0 3 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 0 0 5.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 0 0 9.568 3Z"></x-subheader>
 
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
             <div
                 class="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white dark:bg-gray-900">
                 <div>
-
-                    <button data-modal-target="categories" data-modal-toggle="categories"
-                        class="block text-white bg-sky-500 hover:bg-sky-900 cursor-pointer focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-lg text-sm m-2 px-5 py-2.5 text-center dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-800"
-                        type="button">
-                        Add Category
-                    </button>
                     <!-- Main modal -->
                     <div id="categories" tabindex="-1" aria-hidden="true"
                         class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -21,7 +16,7 @@
                                 <!-- Modal header -->
                                 <div
                                     class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
-                                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white uppercase">
                                         Register New Category
                                     </h3>
                                     <button type="button"
@@ -39,7 +34,7 @@
                                 <div class="p-4 md:p-5 space-y-4">
 
 
-                                    <form class="max-w-sm mx-4" method="post" action="{{ route('category.store') }}">
+                                    <form class=" mx-4" method="post" action="{{ route('category.store') }}">
                                         @csrf
                                         <div class="mb-5">
                                             <label for="name"
@@ -73,7 +68,7 @@
                     </div>
                 </div>
                 <label for="table-search" class="sr-only">Search</label>
-                <div class="relative">
+                <div class="relative m-1">
                     <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
                         <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
@@ -108,16 +103,16 @@
                     @forelse ($categories as $category)
                         <tr
                             class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-                            <td class="px-6 py-4">
+                            <td class="px-5 py-3">
                                 {{ $category->id }}
                             </td>
-                            <td class="px-6 py-4">
+                            <td class="px-5 py-3">
                                 {{ $category->name }}
                             </td>
-                            <td class="px-6 py-4">
+                            <td class="px-5 py-3">
                                 {{ $category->description }}
                             </td>
-                            <td class="px-6 py-4">
+                            <td class="px-5 py-3">
                                 <div class="grid grid-cols-2 gap-2">
                                     <div>
                                         <a href=""
