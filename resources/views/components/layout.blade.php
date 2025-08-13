@@ -17,7 +17,7 @@
             {{ $slot }}
         </main>
     @else
-        <main class="container mx-auto p-4 bg-slate-100 h-full">
+        <main class="container mx-auto bg-slate-100 h-full">
 
 
             <button data-drawer-target="sidebar-multi-level-sidebar" data-drawer-toggle="sidebar-multi-level-sidebar"
@@ -35,18 +35,18 @@
             <aside id="sidebar-multi-level-sidebar"
                 class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
                 aria-label="Sidebar">
-                <div class="h-full px-3 py-4 overflow-y-auto bg-gray-300 dark:bg-gray-800">
+                <div class="h-full px-3 py-4 overflow-y-auto bg-sky-700 dark:bg-gray-800">
                     <a href="https://flowbite.com/" class="flex items-center ps-2.5 mb-5">
-                        <img src="https://flowbite.com/docs/images/logo.svg" class="h-6 me-3 sm:h-7"
-                            alt="Flowbite Logo" />
+                        {{-- <img src="https://flowbite.com/docs/images/logo.svg" class="h-6 me-3 sm:h-7"
+                            alt="Flowbite Logo" /> --}}
                         <span
-                            class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">IsubaERP</span>
+                            class="self-center text-white tracking-widest text-xl font-semibold whitespace-nowrap dark:text-white">IERP</span>
                     </a>
                     <ul class="space-y-2 font-medium">
                         <li>
                             <a href="{{ route('dashboard') }}"
-                                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-sky-400 hover:text-white dark:hover:bg-gray-700 group">
-                                <svg class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-white dark:group-hover:text-white"
+                                class="flex items-center p-2 rounded-lg text-white dark:text-white hover:bg-sky-900 hover:text-white dark:hover:bg-gray-700 group">
+                                <svg class="shrink-0 w-5 h-5 text-white transition duration-75 dark:text-gray-400 group-hover:text-white dark:group-hover:text-white"
                                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="currentColor" class="size-6">
                                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -60,9 +60,9 @@
                         </li>
                         <li>
                             <button type="button"
-                                class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-sky-400 hover:text-white cursor-pointer dark:text-white dark:hover:bg-gray-700"
+                                class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group hover:bg-sky-900 hover:text-white cursor-pointer dark:text-white dark:hover:bg-gray-700"
                                 aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
-                                <svg class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-white dark:group-hover:text-white"
+                                <svg class="shrink-0 w-5 h-5 text-white transition duration-75 dark:text-white group-hover:text-white dark:group-hover:text-white"
                                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="currentColor" class="size-6">
                                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -81,22 +81,22 @@
                             <ul id="dropdown-example" class="hidden py-2 space-y-2">
                                 <li>
                                     <a href="{{ route('roles') }}"
-                                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-sky-400 hover:text-white dark:text-white dark:hover:bg-gray-700 text-sm">Roles</a>
+                                        class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-sky-900 hover:text-white dark:text-white dark:hover:bg-gray-700 text-sm">Roles</a>
                                 </li>
                                 <li>
                                     <a href="{{ route('register') }}"
-                                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-sky-400 hover:text-white dark:text-white dark:hover:bg-gray-700 text-sm">Registration</a>
+                                        class="flex items-center w-full p-2 text-whte transition duration-75 rounded-lg pl-11 group hover:bg-sky-900 hover:text-white dark:text-white dark:hover:bg-gray-700 text-sm">Registration</a>
                                 </li>
                                 <li>
                                     <a href="#"
-                                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-sky-400 hover:text-white dark:text-white dark:hover:bg-gray-700 text-sm">Permissions</a>
+                                        class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-sky-900 hover:text-white dark:text-white dark:hover:bg-gray-700 text-sm">Permissions</a>
                                 </li>
                             </ul>
                         </li>
                         <li>
                             <a href="{{ route('category.create') }}"
-                                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-sky-400 hover:text-white dark:hover:bg-gray-700 group">
-                                <svg class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-white dark:group-hover:text-white"
+                                class="flex items-center p-2 text-white rounded-lg dark:text-white hover:bg-sky-900 hover:text-white dark:hover:bg-gray-700 group">
+                                <svg class="shrink-0 w-5 h-5 text-white transition duration-75 dark:text-gray-400 group-hover:text-white dark:group-hover:text-white"
                                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="currentColor" class="size-6">
                                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -111,8 +111,8 @@
                         </li>
                         <li>
                             <a href="{{ route('product.create') }}"
-                                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-sky-400 hover:text-white dark:hover:bg-gray-700 group">
-                                <svg class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-white dark:group-hover:text-white"
+                                class="flex items-center p-2 text-white rounded-lg dark:text-white hover:bg-sky-900 hover:text-white dark:hover:bg-gray-700 group">
+                                <svg class="shrink-0 w-5 h-5 text-white transition duration-75 dark:text-gray-400 group-hover:text-white dark:group-hover:text-white"
                                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="currentColor" class="size-6">
                                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -126,8 +126,8 @@
                         </li>
                         <li>
                             <a href="#"
-                                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-sky-400 hover:text-white dark:hover:bg-gray-700 group">
-                                <svg class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-white dark:group-hover:text-white"
+                                class="flex items-center p-2 text-white rounded-lg dark:text-white hover:bg-sky-900 hover:text-white dark:hover:bg-gray-700 group">
+                                <svg class="shrink-0 w-5 h-5 text-white transition duration-75 dark:text-gray-400 group-hover:text-white dark:group-hover:text-white"
                                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="currentColor" class="size-6">
                                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -138,8 +138,8 @@
                         </li>
                         <li>
                             <a href="#"
-                                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-sky-400 hover:text-white dark:hover:bg-gray-700 group">
-                                <svg class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-white dark:group-hover:text-white"
+                                class="flex items-center p-2 text-white rounded-lg dark:text-white hover:bg-sky-900 hover:text-white dark:hover:bg-gray-700 group">
+                                <svg class="shrink-0 w-5 h-5 text-white transition duration-75 dark:text-gray-400 group-hover:text-white dark:group-hover:text-white"
                                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="currentColor" class="size-6">
                                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -152,8 +152,8 @@
                         </li>
                         <li>
                             <a href="{{ route('logout') }}"
-                                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-sky-400 hover:text-white dark:hover:bg-gray-700 group">
-                                <svg class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-white dark:group-hover:text-white"
+                                class="flex items-center p-2 text-white rounded-lg dark:text-white hover:bg-sky-900 hover:text-white dark:hover:bg-gray-700 group">
+                                <svg class="shrink-0 w-5 h-5 text-white transition duration-75 dark:text-gray-400 group-hover:text-white dark:group-hover:text-white"
                                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="currentColor" class="size-6">
                                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -168,9 +168,10 @@
             </aside>
 
             <div class="sm:ml-64">
-                <div class="p-4 ">
-                    {{-- <x-header></x-header> --}}
+                <div>
+                    <x-header></x-header>
                     {{ $slot }}
+                    {{-- <x-footer></x-footer> --}}
                 </div>
             </div>
 
@@ -178,6 +179,7 @@
         </main>
     @endif
 
+    //got to put this offline
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
     {!! ToastMagic::scripts() !!}
 </body>

@@ -24,7 +24,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $products = Product::all();
+        $products = Product::with('category')->get();
         $categories = Category::all();
 
         return view('pages.products', [

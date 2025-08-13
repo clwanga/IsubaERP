@@ -23,7 +23,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
+        $categories = Category::latest()->paginate();
 
         return view('pages.categories', [
             'categories' => $categories
