@@ -1,12 +1,12 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\input;
 
 use Closure;
 use Illuminate\View\Component;
 use Illuminate\Contracts\View\View;
 
-class chart-js extends Component
+class text extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class chart-js extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.chart-js');
+        return view('components.input.text');
     }
 }

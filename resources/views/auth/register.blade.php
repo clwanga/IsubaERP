@@ -101,9 +101,7 @@
                                                     {{ $message }}</p>
                                             @enderror
                                         </div>
-                                        <button type="submit"
-                                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Register
-                                            new account</button>
+                                        <x-submit-btn btnText="add user"></x-submit-btn>
                                     </form>
 
                                 </div>
@@ -128,10 +126,6 @@
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
-
-                        <th scope="col" class="px-6 py-3">
-                            user id
-                        </th>
                         <th scope="col" class="px-6 py-3">
                             Name
                         </th>
@@ -142,6 +136,10 @@
                             Status
                         </th>
                         <th scope="col" class="px-6 py-3">
+                            Created At
+                        </th>
+
+                        <th scope="col" class="px-6 py-3">
                             Action
                         </th>
                     </tr>
@@ -150,9 +148,7 @@
                     @forelse ($users as $user)
                         <tr
                             class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-                            <td class="px-5 py-3">
-                                {{ $user->id }}
-                            </td>
+
                             <th scope="row"
                                 class="flex items-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 <img class="w-10 h-10 rounded-full" src="" alt="Jese image">
@@ -175,6 +171,9 @@
                                             Active</span>
                                     @endif
                                 </div>
+                            </td>
+                            <td class="px-5 py-3">
+                                {{ $user->created_at }}
                             </td>
                             <td class="px-5 py-3">
                                 <div class="grid grid-cols-3 gap-1">

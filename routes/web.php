@@ -6,6 +6,8 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RolesController;
+use App\Http\Controllers\SalesController;
+use App\Http\Controllers\StockController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -32,4 +34,11 @@ Route::middleware('auth')->group(function(){
 
     Route::resource('product', ProductController::class);
     Route::resource('category', CategoryController::class);
+
+    Route::get('stocks', [StockController::class, 'index'])->name('stocks');
+    Route::post('stocks', [StockController::class, 'store'])->name('stocks.store');
+    Route::delete('stocks', [StockController::class, 'destroy'])->name('stocks.destroy');
+
+    Route::get('sales', [SalesController::class, 'index'])->name('sales');
+    Route::post('sales', [SalesController::class, 'store'])->name('sales.store');
 });
