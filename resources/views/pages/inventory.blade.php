@@ -31,42 +31,47 @@
                             </div>
                             <!-- Modal body -->
                             <div class="p-4 md:p-5 space-y-4">
-
-
-                                <form class=" mx-4" method="post" action="{{ route('stocks.store') }}">
-                                    @csrf
-                                    <div class="grid grid-cols-2 gap-2">
-                                        <div class="mb-5">
-                                            <label for="product_id"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product</label>
-                                            <select id="product_id" name="product_id"
-                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                                <option value="">-- select product --</option>
-                                                @foreach ($products as $product)
-                                                    <option value="{{ $product->id }}">{{ $product->name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                            @error('product_id')
-                                                <p class="mt-2 text-sm text-red-600 dark:text-red-500">
-                                                    {{ $message }}</p>
-                                            @enderror
+                                @if ($products->count() > 0)
+                                    <form class=" mx-4" method="post" action="{{ route('stocks.store') }}">
+                                        @csrf
+                                        <div class="grid grid-cols-2 gap-2">
+                                            <div class="mb-5">
+                                                <label for="product_id"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product</label>
+                                                <select id="product_id" name="product_id"
+                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                    <option value="">-- select product --</option>
+                                                    @foreach ($products as $product)
+                                                        <option value="{{ $product->id }}">{{ $product->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                                @error('product_id')
+                                                    <p class="mt-2 text-sm text-red-600 dark:text-red-500">
+                                                        {{ $message }}</p>
+                                                @enderror
+                                            </div>
+                                            <div class="mb-5">
+                                                <label for="quantity"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quantity</label>
+                                                <input value="{{ old('quantity') }}" type="number" id="quantity"
+                                                    name="quantity"
+                                                    class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light" />
+                                                @error('quantity')
+                                                    <p class="mt-2 text-sm text-red-600 dark:text-red-500">
+                                                        {{ $message }}</p>
+                                                @enderror
+                                            </div>
                                         </div>
-                                        <div class="mb-5">
-                                            <label for="quantity"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quantity</label>
-                                            <input value="{{ old('quantity') }}" type="number" id="quantity"
-                                                name="quantity"
-                                                class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light" />
-                                            @error('quantity')
-                                                <p class="mt-2 text-sm text-red-600 dark:text-red-500">
-                                                    {{ $message }}</p>
-                                            @enderror
-                                        </div>
-                                    </div>
 
-                                    <x-submit-btn btnText="add stock"></x-submit-btn>
-                                </form>
+                                        <x-submit-btn btnText="add stock"></x-submit-btn>
+                                    </form>
+                                @else
+                                    <span
+                                        class="bg-green-500 text-white text-xs font-medium me-2 px-3 py-2 rounded-sm dark:bg-green-900 dark:text-white uppercase flex items-center justify-center">all
+                                        products have been registered to your inventory</span>
+                                @endif
+
 
                             </div>
                         </div>
