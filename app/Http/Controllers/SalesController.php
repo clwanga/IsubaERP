@@ -19,6 +19,8 @@ class SalesController extends Controller
 
         $products = Product::all();
 
+        // dd($products);
+
         $user_sales = Product_sale::where('user_id', $user_id)->where('created_at', today())->get();
 
         return view('pages.sales', compact('user_sales', 'products'));
@@ -43,7 +45,7 @@ class SalesController extends Controller
             if ($stock->quantity < $request->input('quantity')) {
                 return back()->withErrors([
                     'quantity' => 'Invalid quantity. No available stocks'
-                ]);
+                ])->onlyInput('quantity');
             }
             
             Product_sale::create($validated_data);

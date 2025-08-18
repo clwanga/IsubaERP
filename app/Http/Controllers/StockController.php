@@ -57,7 +57,12 @@ class StockController extends Controller
 
     }
 
-    public function update(Request $request){
+    public function updateQuantity(Request $request, Stock $stock){
+        $validated = $request->validate([
+            'quantity' => 'required|integer|numeric',
+            'price' => 'decimal'
+        ]);
 
+        dd($validated);
     }
 }

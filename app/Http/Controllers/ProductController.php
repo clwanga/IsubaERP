@@ -81,9 +81,32 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Product $product)
     {
-        //
+        $validated_data = $request->validate([
+            'name' => 'string|max:30',
+            'category_id' => 'required',
+            'description' => 'string|max:100',
+            'qrcode' => 'string',
+            'price' => 'integer'
+        ]);
+
+        dd($product);
+
+        try {
+    
+            // Product::create($validated_data);
+            $product->update($validated_data);
+            ToastMagic::success('Product updated');
+    
+            return back();
+        } catch (\Throwable $th) {
+            Log::error($th->getMessage(), [
+                'code' => $th->getCode()
+            ]);
+
+            ToastMagic::error('An error occurred. Contact your IT Admin');
+        }
     }
 
     /**

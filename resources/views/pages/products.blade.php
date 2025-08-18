@@ -173,8 +173,8 @@
                                 <div class="grid grid-cols-2 gap-1">
 
                                     <div>
-                                        <button type="button" data-modal-target="edit_products"
-                                            data-modal-toggle="edit_products"
+                                        <button type="button" data-modal-target="edit_products{{ $product->id }}"
+                                            data-modal-toggle="edit_products{{ $product->id }}"
                                             class="font-medium text-grey-600 dark:text-grey-500 hover:text-grey-800 cursor-pointer">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                 viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
@@ -183,6 +183,130 @@
                                                     d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
                                             </svg>
                                         </button>
+                                        <!-- edit product Main modal -->
+                                        <div id="edit_products{{ $product->id }}" tabindex="-1" aria-hidden="true"
+                                            class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                                            <div class="relative p-4 w-full max-w-2xl max-h-full">
+                                                <!-- Modal content -->
+                                                <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
+                                                    <!-- Modal header -->
+                                                    <div
+                                                        class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
+                                                        <h3
+                                                            class="text-lg font-semibold text-gray-900 dark:text-white uppercase">
+                                                            Edit Product
+                                                        </h3>
+                                                        <button type="button"
+                                                            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                                                            data-modal-hide="edit_products{{ $product->id }}">
+                                                            <svg class="w-3 h-3" aria-hidden="true"
+                                                                xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                                viewBox="0 0 14 14">
+                                                                <path stroke="currentColor" stroke-linecap="round"
+                                                                    stroke-linejoin="round" stroke-width="2"
+                                                                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                                            </svg>
+                                                            <span class="sr-only">Close modal</span>
+                                                        </button>
+                                                    </div>
+                                                    <!--Edit product Modal body -->
+                                                    <div class="p-4 md:p-5 space-y-4">
+
+
+                                                        <form class="mx-4" method="post"
+                                                            action="{{ route('product.update', $product) }}">
+                                                            @csrf
+                                                            @method('put')
+                                                            <div class="grid grid-cols-2 gap-3 mb-2">
+
+                                                                <div class="mb-5">
+                                                                    <label for="name"
+                                                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product
+                                                                        Name</label>
+                                                                    <input value="{{ old('name', $product->name) }}"
+                                                                        type="text" id="name" name="name"
+                                                                        class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light"
+                                                                        placeholder="" />
+                                                                    @error('name')
+                                                                        <p
+                                                                            class="mt-2 text-sm text-red-600 dark:text-red-500">
+                                                                            {{ $message }}</p>
+                                                                    @enderror
+                                                                </div>
+                                                                <div class="mb-5">
+                                                                    <label for="category_id"
+                                                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
+                                                                    <select value="{{ old('category_id') }}"
+                                                                        id="category_id" name="category_id"
+                                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                                        <option value="">-- select category --
+                                                                        </option>
+                                                                        @foreach ($categories as $category)
+                                                                            @if ($product->category_id == $category->id)
+                                                                                <option value="{{ $category->id }}"
+                                                                                    selected>
+                                                                                    {{ $category->name }}
+                                                                                </option>
+                                                                            @else
+                                                                                <option value="{{ $category->id }}">
+                                                                                    {{ $category->name }}
+                                                                                </option>
+                                                                            @endif
+                                                                        @endforeach
+                                                                    </select>
+                                                                    @error('category_id')
+                                                                        <p
+                                                                            class="mt-2 text-sm text-red-600 dark:text-red-500">
+                                                                            {{ $message }}</p>
+                                                                    @enderror
+                                                                </div>
+                                                                <div class="mb-5">
+                                                                    <label for="description"
+                                                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+                                                                    <textarea id="description" name="description"
+                                                                        class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light">{{ old('description', $product->description) }}</textarea>
+                                                                    @error('description')
+                                                                        <p
+                                                                            class="mt-2 text-sm text-red-600 dark:text-red-500">
+                                                                            {{ $message }}</p>
+                                                                    @enderror
+                                                                </div>
+                                                                <div class="mb-5">
+                                                                    <label for="qrcode"
+                                                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">QR
+                                                                        Code</label>
+                                                                    <input
+                                                                        value="{{ old('qrcode', $product->qrcode) }}"
+                                                                        type="text" id="qrcode" name="qrcode"
+                                                                        class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light" />
+                                                                    @error('qrcode')
+                                                                        <p
+                                                                            class="mt-2 text-sm text-red-600 dark:text-red-500">
+                                                                            {{ $message }}</p>
+                                                                    @enderror
+                                                                </div>
+                                                                <div class="mb-5">
+                                                                    <label for="price"
+                                                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
+                                                                    <input value="{{ old('price', $product->price) }}"
+                                                                        type="number" id="price" name="price"
+                                                                        class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light"
+                                                                        required />
+                                                                    @error('price')
+                                                                        <p
+                                                                            class="mt-2 text-sm text-red-600 dark:text-red-500">
+                                                                            {{ $message }}</p>
+                                                                    @enderror
+                                                                </div>
+                                                            </div>
+                                                            <x-submit-btn btnText="edit product"></x-submit-btn>
+
+                                                        </form>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
 
                                     </div>
                                     <div>

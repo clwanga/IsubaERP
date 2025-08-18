@@ -103,7 +103,7 @@
                         Quantity
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Status
+                        Stock Status
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Created By
@@ -131,7 +131,7 @@
                             <div class="flex items-center">
                                 @if ($stock->status == 'high')
                                     <span
-                                        class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-green-900 dark:text-green-300">HIGH</span>
+                                        class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-green-900 dark:text-green-300">BULKY</span>
                                 @else
                                     <span
                                         class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-red-900 dark:text-red-300">LOW</span>
@@ -146,7 +146,20 @@
                         </td>
 
                         <td class="px-5 py-3">
-                            <div class="grid grid-cols-2 gap-2">
+                            <div class="grid grid-cols-3 gap-1">
+                                <div>
+                                    <form action="{{ route('stocks.updateQuantity', $stock->id) }}" method="post">
+                                        @csrf
+                                        @method('put')
+                                        <button type="submit" class=" hover:cursor-pointer">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="1.5" stroke="currentColor" class="size-4">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m3.75 9v6m3-3H9m1.5-12H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                                            </svg>
+                                        </button>
+                                    </form>
+                                </div>
                                 <div>
                                     <a href=""
                                         class="font-medium text-grey-600 dark:text-grey-500 hover:text-grey-800">

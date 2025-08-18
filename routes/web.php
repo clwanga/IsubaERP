@@ -38,6 +38,7 @@ Route::middleware('auth')->group(function(){
     Route::get('stocks', [StockController::class, 'index'])->name('stocks');
     Route::post('stocks', [StockController::class, 'store'])->name('stocks.store');
     Route::delete('stocks', [StockController::class, 'destroy'])->name('stocks.destroy');
+    Route::put('stocks', [StockController::class, 'updateQuantity'])->name('stocks.updateQuantity');
 
     Route::get('sales', [SalesController::class, 'index'])->name('sales');
     Route::post('sales', [SalesController::class, 'store'])->name('sales.store');
