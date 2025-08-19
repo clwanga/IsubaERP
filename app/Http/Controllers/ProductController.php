@@ -43,7 +43,7 @@ class ProductController extends Controller
             'name' => 'required|string|max:30',
             'category_id' => 'required',
             'description' => 'required|string|max:100',
-            'qrcode' => 'required|string',
+            'qrcode' => 'required|string|unique:products',
             'price' => 'required|integer'
         ]);
 
@@ -91,14 +91,17 @@ class ProductController extends Controller
             'price' => 'integer'
         ]);
 
-        dd($product);
-
         try {
     
             // Product::create($validated_data);
-            $product->update($validated_data);
+            $update = $product->update($validated_data);
+
+            if (!$update) {
+               ToastMagic::error('update failed');
+               return back(); 
+            }
+
             ToastMagic::success('Product updated');
-    
             return back();
         } catch (\Throwable $th) {
             Log::error($th->getMessage(), [
@@ -112,8 +115,24 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Product $product)
     {
-        //
+        try {
+            $deleted = $product->delete();
+
+            if (!$deleted) {
+                ToastMagic::error('deletion failed');
+                return back();
+            }
+
+            ToastMagic::success('Product deleted');
+            return back();
+        } catch (\Throwable $th) {
+            Log::error($th->getMessage(), [
+                'code' => $th->getCode()
+            ]);
+
+            ToastMagic::error('An error occurred. Contact your IT Admin');
+        }
     }
 }

@@ -74,9 +74,30 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Category $category)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:20',
+            'description' => 'required|string|max:100'
+        ]);
+
+        try {      
+            $update = $category->update($validated);
+
+            if (!$update) {
+                ToastMagic::error('Update failed');
+                return back();
+            }
+
+            ToastMagic::success('Update succeded');
+            return back();
+        } catch (\Throwable $th) {
+            Log::error($th->getMessage(), [
+                'code' => $th->getCode()
+            ]);
+
+            ToastMagic::error('An error occurred. Contact your IT Admin');
+        }
     }
 
     /**

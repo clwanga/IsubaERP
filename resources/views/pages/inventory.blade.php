@@ -62,6 +62,18 @@
                                                         {{ $message }}</p>
                                                 @enderror
                                             </div>
+                                            <div class="mb-5">
+                                                <label for="buying_price"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Buying
+                                                    Price</label>
+                                                <input value="{{ old('buying_price') }}" type="number"
+                                                    id="buying_price" name="buying_price"
+                                                    class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light" />
+                                                @error('buying_price')
+                                                    <p class="mt-2 text-sm text-red-600 dark:text-red-500">
+                                                        {{ $message }}</p>
+                                                @enderror
+                                            </div>
                                         </div>
 
                                         <x-submit-btn btnText="add stock"></x-submit-btn>
@@ -103,6 +115,9 @@
                         Quantity
                     </th>
                     <th scope="col" class="px-6 py-3">
+                        Buying Price
+                    </th>
+                    <th scope="col" class="px-6 py-3">
                         Stock Status
                     </th>
                     <th scope="col" class="px-6 py-3">
@@ -128,6 +143,9 @@
                             {{ $stock->quantity }}
                         </td>
                         <td class="px-5 py-3">
+                            {{ $stock->buying_price }}
+                        </td>
+                        <td class="px-5 py-3">
                             <div class="flex items-center">
                                 @if ($stock->status == 'high')
                                     <span
@@ -146,30 +164,165 @@
                         </td>
 
                         <td class="px-5 py-3">
-                            <div class="grid grid-cols-3 gap-1">
+                            <div class="grid grid-cols-2 gap-1">
                                 <div>
-                                    <form action="{{ route('stocks.updateQuantity', $stock->id) }}" method="post">
-                                        @csrf
-                                        @method('put')
-                                        <button type="submit" class=" hover:cursor-pointer">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="1.5" stroke="currentColor" class="size-4">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m3.75 9v6m3-3H9m1.5-12H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
-                                            </svg>
-                                        </button>
-                                    </form>
-                                </div>
-                                <div>
-                                    <a href=""
-                                        class="font-medium text-grey-600 dark:text-grey-500 hover:text-grey-800">
+                                    <button title="Add stock" type="button"
+                                        data-modal-target="add_stock{{ $stock->id }}"
+                                        data-modal-toggle="add_stock{{ $stock->id }}"
+                                        class="font-medium text-grey-600 dark:text-grey-500 hover:text-grey-800 cursor-pointer">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            stroke-width="2" stroke="currentColor" class="size-4">
+                                            stroke-width="1.5" stroke="currentColor" class="size-4">
                                             <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+                                                d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m3.75 9v6m3-3H9m1.5-12H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
                                         </svg>
-                                    </a>
+                                    </button>
+                                    <!-- edit product Main modal -->
+                                    <div id="add_stock{{ $stock->id }}" tabindex="-1" aria-hidden="true"
+                                        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                                        <div class="relative p-4 w-full max-w-2xl max-h-full">
+                                            <!-- Modal content -->
+                                            <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
+                                                <!-- Modal header -->
+                                                <div
+                                                    class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
+                                                    <h3
+                                                        class="text-lg font-semibold text-gray-900 dark:text-white uppercase">
+                                                        Add stock
+                                                    </h3>
+                                                    <button type="button"
+                                                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                                                        data-modal-hide="add_stock{{ $stock->id }}">
+                                                        <svg class="w-3 h-3" aria-hidden="true"
+                                                            xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                            viewBox="0 0 14 14">
+                                                            <path stroke="currentColor" stroke-linecap="round"
+                                                                stroke-linejoin="round" stroke-width="2"
+                                                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                                        </svg>
+                                                        <span class="sr-only">Close modal</span>
+                                                    </button>
+                                                </div>
+                                                <!--Edit product Modal body -->
+                                                <div class="p-4 md:p-5 space-y-4">
+
+
+                                                    <form class="mx-4" method="post"
+                                                        action="{{ route('stocks.updateQuantity', $stock) }}">
+                                                        @csrf
+                                                        @method('put')
+                                                        <div class="mb-5">
+                                                            <label for="quantity"
+                                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quantity</label>
+                                                            <input value="{{ old('quantity') }}" type="number"
+                                                                id="quantity" name="quantity"
+                                                                class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light"
+                                                                required />
+                                                            @error('quantity')
+                                                                <p class="mt-2 text-sm text-red-600 dark:text-red-500">
+                                                                    {{ $message }}</p>
+                                                            @enderror
+                                                        </div>
+                                                        <div class="mb-5">
+                                                            <label for="buying_price"
+                                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Buying
+                                                                Price</label>
+                                                            <input value="{{ old('price') }}" type="number"
+                                                                id="buying_price" name="buying_price"
+                                                                class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light"
+                                                                required />
+                                                            @error('buying_price')
+                                                                <p class="mt-2 text-sm text-red-600 dark:text-red-500">
+                                                                    {{ $message }}</p>
+                                                            @enderror
+                                                        </div>
+                                                        <x-submit-btn btnText="Add stock"></x-submit-btn>
+
+                                                    </form>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+                                {{-- <div>
+                                    <button type="button" data-modal-target="edit_stock_details{{ $stock->id }}"
+                                        data-modal-toggle="edit_stock_details{{ $stock->id }}"
+                                        class="font-medium text-grey-600 dark:text-grey-500 hover:text-grey-800 cursor-pointer">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" class="size-4">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m3.75 9v6m3-3H9m1.5-12H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                                        </svg>
+                                    </button>
+                                    <!-- edit product Main modal -->
+                                    <div id="edit_stock_details{{ $stock->id }}" tabindex="-1"
+                                        aria-hidden="true"
+                                        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                                        <div class="relative p-4 w-full max-w-2xl max-h-full">
+                                            <!-- Modal content -->
+                                            <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
+                                                <!-- Modal header -->
+                                                <div
+                                                    class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
+                                                    <h3
+                                                        class="text-lg font-semibold text-gray-900 dark:text-white uppercase">
+                                                        Edit stock
+                                                    </h3>
+                                                    <button type="button"
+                                                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                                                        data-modal-hide="edit_stock_details{{ $stock->id }}">
+                                                        <svg class="w-3 h-3" aria-hidden="true"
+                                                            xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                            viewBox="0 0 14 14">
+                                                            <path stroke="currentColor" stroke-linecap="round"
+                                                                stroke-linejoin="round" stroke-width="2"
+                                                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                                        </svg>
+                                                        <span class="sr-only">Close modal</span>
+                                                    </button>
+                                                </div>
+                                                <!--Edit product Modal body -->
+                                                <div class="p-4 md:p-5 space-y-4">
+
+
+                                                    <form class="mx-4" method="post"
+                                                        action="{{ route('stocks.update', $stock) }}">
+                                                        @csrf
+                                                        @method('put')
+                                                        <div class="mb-5">
+                                                            <label for="quantity"
+                                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quantity</label>
+                                                            <input value="{{ old('quantity', $stock->quantity) }}"
+                                                                type="number" id="quantity" name="quantity"
+                                                                class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light"
+                                                                required />
+                                                            @error('quantity')
+                                                                <p class="mt-2 text-sm text-red-600 dark:text-red-500">
+                                                                    {{ $message }}</p>
+                                                            @enderror
+                                                        </div>
+                                                        <div class="mb-5">
+                                                            <label for="buying_price"
+                                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Buying
+                                                                Price</label>
+                                                            <input value="{{ old('price', $stock->buying_price) }}"
+                                                                type="number" id="buying_price" name="buying_price"
+                                                                class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light"
+                                                                required />
+                                                            @error('buying_price')
+                                                                <p class="mt-2 text-sm text-red-600 dark:text-red-500">
+                                                                    {{ $message }}</p>
+                                                            @enderror
+                                                        </div>
+                                                        <x-submit-btn btnText="edit inventory"></x-submit-btn>
+
+                                                    </form>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> --}}
                                 <div>
                                     <form action="{{ route('stocks.destroy', $stock->id) }}" method="post">
                                         @csrf

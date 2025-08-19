@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    protected $fillable = ['name', 'category_id', 'qrcode', 'description', 'price'];
+    protected $fillable = ['name', 'category_id', 'qrcode', 'description', 'price', 'buying_price'];
 
     public function category(){
         return $this->belongsTo(Category::class);
@@ -18,5 +18,9 @@ class Product extends Model
 
     public function product_sales(){
         return $this->hasMany(Product_sale::class);
+    }
+
+    public function purchaseItems(){
+        return $this->hasMany(PurchaseItem::class);
     }
 }

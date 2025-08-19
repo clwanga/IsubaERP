@@ -143,6 +143,9 @@
                             Description
                         </th>
                         <th scope="col" class="px-6 py-3">
+                            Buying Price
+                        </th>
+                        <th scope="col" class="px-6 py-3">
                             Price
                         </th>
                         <th scope="col" class="px-6 py-3">
@@ -165,6 +168,9 @@
                             </td>
                             <td class="px-5 py-3">
                                 {{ $product->description }}
+                            </td>
+                            <td class="px-5 py-3">
+                                {{ $product->buying_price }}
                             </td>
                             <td class="px-5 py-3">
                                 {{ $product->price }}

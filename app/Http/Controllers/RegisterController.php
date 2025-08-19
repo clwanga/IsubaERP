@@ -89,4 +89,29 @@ class RegisterController extends Controller
             ToastMagic::error('An error occurred. Contact your IT Admin');
         }
     }
+
+    public function resetPassword(User $user){
+        // dd($user);
+        $default_password = '#Isuba2025';
+
+        try {
+            $update = $user->update([
+                'password' => Hash::make($default_password)
+            ]);
+
+            if (!$update) {
+                ToastMagic::error('Operation failed');
+                return back();
+            }
+
+            ToastMagic::success('Operation succeded');
+            return back();
+        } catch (\Throwable $th) {
+            Log::error($th->getMessage(), [
+                'code' => $th->getCode()
+            ]);
+
+            ToastMagic::error('An error occurred. Contact your IT Admin');
+        }
+    }
 }

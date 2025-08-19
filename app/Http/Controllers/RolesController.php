@@ -34,4 +34,29 @@ class RolesController extends Controller
             ToastMagic::error('An error occurred. Contact your IT Admin');
         }
     }
+
+    public function update(Request $request, Role $role){
+            $validated_data = $request->validate([
+                'role' => 'string|max:30',
+                'description' => 'string|max:100'
+            ]);
+
+            try {
+                 $update = $role->update($validated_data);
+
+                 if (!$update) {
+                    ToastMagic::error('update failed');
+                    return back();
+                 }
+
+                 ToastMagic::success('update succeded');
+                 return back();
+            } catch (\Throwable $th) {
+                Log::error($th->getMessage(), [
+                'code' => $th->getCode()
+                ]);
+
+                ToastMagic::error('An error occurred. Contact your IT Admin');
+            }
+    }
 }
