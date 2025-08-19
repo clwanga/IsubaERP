@@ -44,7 +44,7 @@ class ProductController extends Controller
             'category_id' => 'required',
             'description' => 'required|string|max:100',
             'qrcode' => 'required|string|unique:products',
-            'price' => 'required|integer'
+            'price' => 'nullable|integer'
         ]);
 
         try {
