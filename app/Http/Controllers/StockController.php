@@ -33,6 +33,7 @@ class StockController extends Controller
         //created by logic
         $validated_data['created_by'] = Auth::user()->id;
         
+        DB::beginTransaction();
         try {
             
             $stock = Stock::create($validated_data);
@@ -48,10 +49,22 @@ class StockController extends Controller
                 ]);
             }
 
+            //select the product and update buying price 
+            $product = Product::where('id', $stock->product_id)->firstOrFail();
+
+            //update the buying price
+            $product->update([
+                'buying_price' => $validated_data['buying_price']
+            ]);
+
+            DB::commit();
+
             ToastMagic::success('operation successfully');
             
             return back();
         } catch (\Throwable $th) {
+
+            DB::rollBack();
             Log::error($th->getMessage(), [
                 'code' => $th->getCode()
             ]);
@@ -119,5 +132,21 @@ class StockController extends Controller
 
     public function update(Request $request, Stock $stock){
         dd($stock);
+    }
+
+    public function destroy(Stock $stock){
+        try {
+            $stock->delete();
+
+            ToastMagic::success('stock deleted successfully');
+            return back();
+
+        } catch (\Throwable $th) {
+            Log::error($th->getMessage(), [
+                'code' => $th->getCode()
+            ]);
+
+            ToastMagic::error('An error occurred. Contact your IT Admin');
+        }
     }
 }

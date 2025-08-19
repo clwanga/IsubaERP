@@ -164,7 +164,7 @@
                         </td>
 
                         <td class="px-5 py-3">
-                            <div class="grid grid-cols-2 gap-1">
+                            <div class="grid grid-cols-1 gap-1">
                                 <div>
                                     <button title="Add stock" type="button"
                                         data-modal-target="add_stock{{ $stock->id }}"
@@ -323,7 +323,7 @@
                                         </div>
                                     </div>
                                 </div> --}}
-                                <div>
+                                {{-- <div>
                                     <form action="{{ route('stocks.destroy', $stock->id) }}" method="post">
                                         @csrf
                                         @method('delete')
@@ -337,7 +337,7 @@
 
                                         </button>
                                     </form>
-                                </div>
+                                </div> --}}
                             </div>
 
 
