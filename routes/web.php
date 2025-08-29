@@ -37,6 +37,7 @@ Route::middleware('auth')->group(function(){
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
     Route::resource('product', ProductController::class);
+    Route::post('product/fetch', [ProductController::class, 'productById'])->name('product.byId');
     Route::resource('category', CategoryController::class);
 
     Route::get('stocks', [StockController::class, 'index'])->name('stocks');

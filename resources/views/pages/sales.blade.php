@@ -62,8 +62,8 @@
                                         <div class="mb-5">
                                             <label for="quantity"
                                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quantity</label>
-                                            <input value="{{ old('quantity') }}" type="number" id="quantity"
-                                                name="quantity"
+                                            <input onchange="calculateTotal()" value="{{ old('quantity') }}"
+                                                type="number" id="quantity" name="quantity"
                                                 class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light" />
                                             @error('quantity')
                                                 <p class="mt-2 text-sm text-red-600 dark:text-red-500">
@@ -77,6 +77,31 @@
                                                 Amount</label>
                                             <input readonly type="number" id="amount" name="amount"
                                                 class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light" />
+                                        </div>
+
+                                        <div class="mb-5">
+                                            <label for="customer_name"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Customer
+                                                Full Name</label>
+                                            <input value="{{ old('customer_name') }}" type="text" id="customer_name"
+                                                name="customer_name"
+                                                class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light" />
+                                            @error('customer_name')
+                                                <p class="mt-2 text-sm text-red-600 dark:text-red-500">
+                                                    {{ $message }}</p>
+                                            @enderror
+                                        </div>
+
+                                        <div class="mb-5">
+                                            <label for="customer_phone"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Customer
+                                                Phone Number</label>
+                                            <input readonly type="number" id="customer_phone" name="customer_phone"
+                                                class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light" />
+                                            @error('customer_no')
+                                                <p class="mt-2 text-sm text-red-600 dark:text-red-500">
+                                                    {{ $message }}</p>
+                                            @enderror
                                         </div>
                                     </div>
 
@@ -200,4 +225,47 @@
             </tbody>
         </table>
     </div>
+
+    {{-- @push('scripts')
+        <script src="{{ asset('vendor/js/sales.js') }}"></script>
+    @endpush --}}
+    <script>
+        document.getElementById('product_id').addEventListener('change', function() {
+            const selectedValue = this.value;
+
+            if (!selectedValue) {
+                document.getElementById('quantity').value = '';
+                // document.getElementById('field2').value = '';
+                return;
+            }
+
+            fetch('{{ route('product.byId') }}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    body: JSON.stringify({
+                        selected_value: selectedValue
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('selling_price').value = data.price;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error fetching data');
+                });
+        });
+
+        function calculateTotal() {
+            let price = document.getElementById('selling_price').value;
+            let quantity = document.getElementById('quantity').value;
+
+            let total = price * quantity;
+
+            document.getElementById('amount').value = total;
+        }
+    </script>
 </x-layout>

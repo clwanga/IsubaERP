@@ -49,9 +49,17 @@ class StockController extends Controller
                 ]);
             }
 
+            PurchaseItem::create([
+                'product_id' => $stock->product_id,
+                'quantity' => $validated_data['quantity'],
+                'buying_price' => $validated_data['buying_price'],
+                'created_by' => Auth::user()->id
+            ]);
+
             //select the product and update buying price 
             $product = Product::where('id', $stock->product_id)->firstOrFail();
 
+            // dd($product);
             //update the buying price
             $product->update([
                 'buying_price' => $validated_data['buying_price']

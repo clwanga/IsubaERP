@@ -166,7 +166,7 @@
                         <td class="px-5 py-3">
                             <div class="grid grid-cols-1 gap-1">
                                 <div>
-                                    <button title="Add stock" type="button"
+                                    <button title="update stock" type="button"
                                         data-modal-target="add_stock{{ $stock->id }}"
                                         data-modal-toggle="add_stock{{ $stock->id }}"
                                         class="font-medium text-grey-600 dark:text-grey-500 hover:text-grey-800 cursor-pointer">
@@ -187,7 +187,7 @@
                                                     class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
                                                     <h3
                                                         class="text-lg font-semibold text-gray-900 dark:text-white uppercase">
-                                                        Add stock
+                                                        update stock
                                                     </h3>
                                                     <button type="button"
                                                         class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
@@ -235,7 +235,7 @@
                                                                     {{ $message }}</p>
                                                             @enderror
                                                         </div>
-                                                        <x-submit-btn btnText="Add stock"></x-submit-btn>
+                                                        <x-submit-btn btnText="Update Inventory"></x-submit-btn>
 
                                                     </form>
 

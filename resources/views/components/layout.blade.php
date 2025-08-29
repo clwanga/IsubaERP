@@ -1,3 +1,8 @@
+@php
+
+    $categories = \App\Models\Category::count();
+@endphp
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -106,7 +111,7 @@
 
                                 <span class="flex-1 ms-3 whitespace-nowrap text-sm font-semibold">Category</span>
                                 <span
-                                    class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">3</span>
+                                    class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">{{ $categories }}</span>
                             </a>
                         </li>
                         <li>
@@ -186,6 +191,7 @@
     //got to put this offline
     @vite(['resources/js/flowbite.js'])
     {!! ToastMagic::scripts() !!}
+    @stack('scripts')
 </body>
 
 </html>

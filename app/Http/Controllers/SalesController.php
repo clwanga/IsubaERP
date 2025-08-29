@@ -27,14 +27,19 @@ class SalesController extends Controller
     }
 
     public function store(Request $request){
-        
+
         $validated_data = $request->validate([
             'product_id' => 'required|integer',
             'quantity' => 'required|integer',
-            'amount' => 'required|integer',
+            'customer_phone' => 'integer|max:10',
+            'customer_name' => 'string'
         ]);
 
         $validated_data['user_id'] = Auth::user()->id;
+        $validated_data['selling_price'] = $request->input('selling_price');
+        $validated_data['amount'] = $request->input('amount');
+
+        dd($validated_data);
 
         DB::beginTransaction();
 

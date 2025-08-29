@@ -135,4 +135,24 @@ class ProductController extends Controller
             ToastMagic::error('An error occurred. Contact your IT Admin');
         }
     }
+
+    public function productById(Request $request){
+        try {
+            //code...
+            $price = Product::where('id', $request->input('selected_value'))->value('price');
+
+            return response()->json([
+                'price' => $price,
+            ], 200);
+
+        } catch (\Throwable $th) {
+            Log::error($th->getMessage(), [
+                'code' => $th->getCode()
+            ]);
+
+            ToastMagic::error('An error occurred. Contact your IT Admin');
+        }
+
+
+    }
 }
