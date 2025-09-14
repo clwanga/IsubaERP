@@ -112,7 +112,7 @@
                         Product
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Quantity
+                        Available Quantity
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Buying Price

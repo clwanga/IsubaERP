@@ -21,7 +21,9 @@ class SalesController extends Controller
 
         // dd($products);
 
-        $user_sales = Product_sale::where('user_id', $user_id)->where('created_at', today())->get();
+        $user_sales = Product_sale::with(['product', 'user'])->where('user_id', $user_id)->get();
+
+        // dd($user_sales);
 
         return view('pages.sales', compact('user_sales', 'products'));
     }
@@ -31,15 +33,15 @@ class SalesController extends Controller
         $validated_data = $request->validate([
             'product_id' => 'required|integer',
             'quantity' => 'required|integer',
-            'customer_phone' => 'integer|max:10',
-            'customer_name' => 'string'
+            'customer_phone' => 'nullable|max:10',
+            'customer_name' => 'nullable|string'
         ]);
 
         $validated_data['user_id'] = Auth::user()->id;
         $validated_data['selling_price'] = $request->input('selling_price');
         $validated_data['amount'] = $request->input('amount');
 
-        dd($validated_data);
+        
 
         DB::beginTransaction();
 

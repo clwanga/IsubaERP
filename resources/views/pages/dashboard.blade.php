@@ -17,11 +17,11 @@
                     <div class="ml-5 w-0 flex-1">
                         <dl>
                             <dt class="font-bold text-gray-500 truncate">
-                                Total Revenue
+                                Revenue Generated
                             </dt>
                             <dd>
                                 <div class="text-xl font-bold text-gray-900">
-                                    2,562,000
+                                    {{ $sales_amount }}
                                 </div>
                             </dd>
                         </dl>
@@ -44,7 +44,7 @@
                     <div class="ml-5 w-0 flex-1">
                         <dl>
                             <dt class="font-bold text-gray-500 truncate">
-                                Products
+                                Profit Acquired
                             </dt>
                             <dd>
                                 <div class="text-xl font-bold text-gray-900" id="maleEvents">
@@ -86,16 +86,11 @@
             <div class="bg-orange-400 px-5 py-3"></div>
         </div>
     </div>
-    <div class="flex items-center justify-center h-48 mb-4 rounded-sm bg-gray-50 dark:bg-gray-800">
-        {{-- <p class="text-2xl text-gray-400 dark:text-gray-500">
-            <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                viewBox="0 0 18 18">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M9 1v16M1 9h16" />
-            </svg> --}}
-
-
-        </p>
+    <div class="flex items-center justify-center mb-4 rounded-sm bg-gray-50 dark:bg-gray-800">
+        <div class="flex items-center justify-center p-3 w-full h-100">
+            {{-- <h2 class="text-center">Bar Charts</h2> --}}
+            <canvas id="barChart"></canvas>
+        </div>
     </div>
     {{-- <div class="grid grid-cols-2 gap-4 mb-4">
         <div class="flex items-center justify-center rounded-sm bg-gray-50 h-28 dark:bg-gray-800">
@@ -182,4 +177,53 @@
             </p>
         </div>
     </div> --}}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const labels = {!! json_encode($labels) !!};
+        const data = {!! json_encode($data) !!};
+
+        const config = (type) => ({
+            type: type,
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Sales Amounts per product',
+                    data: data,
+                    // backgroundColor: [
+                    //     '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0',
+                    //     '#9966FF', '#FF9F40', '#66BB6A', '#EF5350'
+                    // ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    }
+                },
+                scales: type === 'pie' || type === 'doughnut' ? {} : {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Amount'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Products'
+                        }
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('barChart'), config('bar'));
+        // new Chart(document.getElementById('lineChart'), config('line'));
+        // new Chart(document.getElementById('pieChart'), config('pie'));
+        // new Chart(document.getElementById('doughnutChart'), config('doughnut'));
+    </script>
 </x-layout>

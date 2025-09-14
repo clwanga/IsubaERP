@@ -2,6 +2,70 @@
     <x-subheader title="my sales" btnText="make sale" modal="sales"
         svg_d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 0 0-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 0 1-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 0 0 3 15h-.75M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm3 0h.008v.008H18V10.5Zm-12 0h.008v.008H6V10.5Z"></x-subheader>
 
+    <div class="grid grid-cols-2 gap-4 m-4">
+        <div class="bg-white overflow-hidden shadow rounded-lg">
+            <div class="p-5">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <!-- Heroicon name: outline/scale -->
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="size-6 h-6 w-6 text-green-600">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 0 0-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 0 1-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 0 0 3 15h-.75M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm3 0h.008v.008H18V10.5Zm-12 0h.008v.008H6V10.5Z" />
+                        </svg>
+
+                    </div>
+
+                    <div class="ml-5 w-0 flex-1">
+                        <dl>
+                            <dt class="font-bold text-gray-500 truncate">
+                                Revenue Generated Today
+                            </dt>
+                            <dd>
+                                <div class="text-xl font-bold text-gray-900">
+                                    10
+                                </div>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-green-600 px-5 py-3"></div>
+        </div>
+        <div class="bg-white overflow-hidden shadow rounded-lg">
+            <div class="p-5">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <!-- Heroicon name: outline/scale -->
+                        {{-- <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-500" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                        </svg> --}}
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                            stroke="currentColor" class="h-6 w-6 text-amber-500">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m3.75 9v7.5m2.25-6.466a9.016 9.016 0 0 0-3.461-.203c-.536.072-.974.478-1.021 1.017a4.559 4.559 0 0 0-.018.402c0 .464.336.844.775.994l2.95 1.012c.44.15.775.53.775.994 0 .136-.006.27-.018.402-.047.539-.485.945-1.021 1.017a9.077 9.077 0 0 1-3.461-.203M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                        </svg>
+
+                    </div>
+
+                    <div class="ml-5 w-0 flex-1">
+                        <dl>
+                            <dt class="font-bold text-gray-500 truncate">
+                                Profit Acquired
+                            </dt>
+                            <dd>
+                                <div class="text-xl font-bold text-gray-900" id="maleEvents">
+                                    50
+                                </div>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-amber-400 px-5 py-3"></div>
+        </div>
+    </div>
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <div
             class="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white dark:bg-gray-900">
@@ -77,14 +141,18 @@
                                                 Amount</label>
                                             <input readonly type="number" id="amount" name="amount"
                                                 class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light" />
+                                            @error('amount')
+                                                <p class="mt-2 text-sm text-red-600 dark:text-red-500">
+                                                    {{ $message }}</p>
+                                            @enderror
                                         </div>
 
                                         <div class="mb-5">
                                             <label for="customer_name"
                                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Customer
                                                 Full Name</label>
-                                            <input value="{{ old('customer_name') }}" type="text" id="customer_name"
-                                                name="customer_name"
+                                            <input value="{{ old('customer_name') }}" type="text"
+                                                id="customer_name" name="customer_name"
                                                 class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light" />
                                             @error('customer_name')
                                                 <p class="mt-2 text-sm text-red-600 dark:text-red-500">
@@ -96,9 +164,9 @@
                                             <label for="customer_phone"
                                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Customer
                                                 Phone Number</label>
-                                            <input readonly type="number" id="customer_phone" name="customer_phone"
+                                            <input type="number" id="customer_phone" name="customer_phone"
                                                 class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light" />
-                                            @error('customer_no')
+                                            @error('customer_phone')
                                                 <p class="mt-2 text-sm text-red-600 dark:text-red-500">
                                                     {{ $message }}</p>
                                             @enderror
@@ -157,7 +225,7 @@
                     <tr
                         class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
                         <td class="px-5 py-3">
-                            {{ $user_sale->product_id }}
+                            {{ $user_sale->product->name }}
                         </td>
                         <td class="px-5 py-3">
                             {{ $user_sale->quantity }}
@@ -166,43 +234,11 @@
                             {{ $user_sale->amount }}
                         </td>
                         <td class="px-5 py-3">
-                            {{ $user_sale->user_id }}
+                            {{ $user_sale->user->name }}
                         </td>
                         <td class="px-5 py-3">
                             {{ $user_sale->created_at }}
                         </td>
-
-                        {{-- <td class="px-5 py-3">
-                            <div class="grid grid-cols-2 gap-2">
-                                <div>
-                                    <a href=""
-                                        class="font-medium text-grey-600 dark:text-grey-500 hover:text-grey-800">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            stroke-width="2" stroke="currentColor" class="size-4">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
-                                        </svg>
-                                    </a>
-                                </div>
-                                <div>
-                                    <form action="{{ route('stocks.destroy', $stock->id) }}" method="post">
-                                        @csrf
-                                        @method('delete')
-                                        <button type="submit" class=" text-red-800 hover:cursor-pointer">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                class="size-4">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
-                                            </svg>
-
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-
-
-                        </td> --}}
                     </tr>
                 @empty
                     <tr>
