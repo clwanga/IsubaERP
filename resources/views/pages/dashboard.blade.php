@@ -21,7 +21,7 @@
                             </dt>
                             <dd>
                                 <div class="text-xl font-bold text-gray-900">
-                                    {{ $sales_amount }}
+                                    {{ number_format($sales->amount, 2, '.', ',') }}
                                 </div>
                             </dd>
                         </dl>
@@ -72,11 +72,11 @@
                     <div class="ml-5 w-0 flex-1">
                         <dl>
                             <dt class=" font-bold text-gray-500 truncate">
-                                Categories
+                                Sold Items
                             </dt>
                             <dd>
                                 <div class="text-xl font-bold text-gray-900" id="femaleEvents">
-                                    12
+                                    {{ $sales->quantity }}
                                 </div>
                             </dd>
                         </dl>

@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Number;
 
 class SalesController extends Controller
 {
@@ -19,13 +20,25 @@ class SalesController extends Controller
 
         $products = Product::all();
 
-        // dd($products);
+        //sales made today 
+        $today_sales = Product_sale::where('user_id', $user_id)
+                    ->whereDate('created_at', today())
+                    ->sum('amount'); 
 
-        $user_sales = Product_sale::with(['product', 'user'])->where('user_id', $user_id)->get();
+        $today_sales = Product_sale::where('user_id', $user_id)
+                    ->whereDate('created_at', today())
+                    ->selectRaw('sum(amount) as amount, sum(quantity) as quantity')
+                    ->first();
+
+
+        $user_sales = Product_sale::with(['product', 'user'])->where('user_id', $user_id)
+                    ->whereDate('created_at', today())
+                    ->latest()
+                    ->get();
 
         // dd($user_sales);
 
-        return view('pages.sales', compact('user_sales', 'products'));
+        return view('pages.sales', compact('user_sales', 'products', 'today_sales'));
     }
 
     public function store(Request $request){

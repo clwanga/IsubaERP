@@ -1,5 +1,5 @@
 <x-layout>
-    <x-subheader title="my sales" btnText="make sale" modal="sales"
+    <x-subheader title="my sales - " date="{{ today()->format('F j, Y') }}" btnText="make sale" modal="sales"
         svg_d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 0 0-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 0 1-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 0 0 3 15h-.75M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm3 0h.008v.008H18V10.5Zm-12 0h.008v.008H6V10.5Z"></x-subheader>
 
     <div class="grid grid-cols-2 gap-4 m-4">
@@ -23,7 +23,7 @@
                             </dt>
                             <dd>
                                 <div class="text-xl font-bold text-gray-900">
-                                    10
+                                    {{ number_format($today_sales->amount, 2, '.', ',') }}
                                 </div>
                             </dd>
                         </dl>
@@ -36,34 +36,30 @@
             <div class="p-5">
                 <div class="flex items-center">
                     <div class="flex-shrink-0">
-                        <!-- Heroicon name: outline/scale -->
-                        {{-- <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-500" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                        </svg> --}}
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                            stroke="currentColor" class="h-6 w-6 text-amber-500">
+                            stroke="currentColor" class="h-6 w-6 text-rose-900">
                             <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m3.75 9v7.5m2.25-6.466a9.016 9.016 0 0 0-3.461-.203c-.536.072-.974.478-1.021 1.017a4.559 4.559 0 0 0-.018.402c0 .464.336.844.775.994l2.95 1.012c.44.15.775.53.775.994 0 .136-.006.27-.018.402-.047.539-.485.945-1.021 1.017a9.077 9.077 0 0 1-3.461-.203M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                                d="M3.75 9.776c.112-.017.227-.026.344-.026h15.812c.117 0 .232.009.344.026m-16.5 0a2.25 2.25 0 0 0-1.883 2.542l.857 6a2.25 2.25 0 0 0 2.227 1.932H19.05a2.25 2.25 0 0 0 2.227-1.932l.857-6a2.25 2.25 0 0 0-1.883-2.542m-16.5 0V6A2.25 2.25 0 0 1 6 3.75h3.879a1.5 1.5 0 0 1 1.06.44l2.122 2.12a1.5 1.5 0 0 0 1.06.44H18A2.25 2.25 0 0 1 20.25 9v.776" />
                         </svg>
+
 
                     </div>
 
                     <div class="ml-5 w-0 flex-1">
                         <dl>
                             <dt class="font-bold text-gray-500 truncate">
-                                Profit Acquired
+                                Items Sold
                             </dt>
                             <dd>
                                 <div class="text-xl font-bold text-gray-900" id="maleEvents">
-                                    50
+                                    {{ $today_sales->quantity }}
                                 </div>
                             </dd>
                         </dl>
                     </div>
                 </div>
             </div>
-            <div class="bg-amber-400 px-5 py-3"></div>
+            <div class="bg-rose-800 px-5 py-3"></div>
         </div>
     </div>
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">

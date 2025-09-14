@@ -1,4 +1,4 @@
-  @props(['title', 'btnText', 'svg_d', 'modal'])
+  @props(['title', 'btnText', 'svg_d', 'modal', 'date' => null])
 
   <div class="w-full border-b-1 border-gray-300 py-3 mb-3 flex flex-row items-center">
       <div class="flex flex-row items-center space-x-2">
@@ -8,7 +8,9 @@
               <path stroke-linecap="round" stroke-linejoin="round" d="{{ $svg_d }}" />
               <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6Z" />
           </svg>
-          <h class="uppercase text-sm font-semibold">{{ $title }}</h>
+          <h class="uppercase text-sm font-semibold">{{ $title }}
+              <span class="font-mono text-xs antialiased text-gray-500">{{ $date }}</span>
+          </h>
 
 
           <button data-modal-toggle="{{ $modal }}" data-modal-target="{{ $modal }}"

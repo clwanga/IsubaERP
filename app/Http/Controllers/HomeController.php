@@ -19,12 +19,12 @@ class HomeController extends Controller
         $data = $usersByNameInitial->values();
 
         //sales data
-        $sales_amount = Product_sale::sum('amount');
+        $sales = Product_sale::selectRaw('sum(amount) as amount, sum(quantity) as quantity')->first();
 
         return view('pages.dashboard', [
             'labels' => $labels,
             'data' => $data,
-            'sales_amount' => $sales_amount
+            'sales' => $sales
         ]);
     }
 
